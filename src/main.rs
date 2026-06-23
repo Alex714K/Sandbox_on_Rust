@@ -1,3 +1,4 @@
+#![windows_subsystem = "windows"]
 mod game;
 mod ables;
 pub mod inside_game;
