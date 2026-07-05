@@ -5,7 +5,7 @@ use rand::seq::SliceRandom;
 
 use crate::{ables::{drawable::Drawable, updatable::Updatable}, inside_game::{brush::Brush, pixel::{MaterialType, Pixel}}};
 
-const HEIGHT: usize = 720 / 4;
+const HEIGHT: usize = 720 / 2;
 const WIDTH: usize = HEIGHT / 9 * 16;
 
 pub struct Grid {
