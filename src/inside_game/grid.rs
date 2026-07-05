@@ -135,7 +135,7 @@ impl Grid {
             else {
                 self.erase_pixel(row, column);
             }
-        return;
+            return;
         }
 
         for r in 0..radius {
