@@ -94,8 +94,6 @@ impl Updatable for Brush {
     fn update(&mut self) {
         self.mouse_update();
 
-        println!("{}", self.brush_multiply);
-
         if is_key_pressed(KeyCode::LeftShift) {
             self.brush_multiply = BRUSH_MULTIPLIER;
         }
