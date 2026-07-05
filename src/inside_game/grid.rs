@@ -128,14 +128,14 @@ impl Grid {
         
         let radius = self.brush.borrow().radius as usize;
 
-            if radius == 1 {
-                if !_erase {
-                    self.set_pixel(row, column, material.clone());
-                }
-                else {
-                    self.erase_pixel(row, column);
-                }
-            return;
+        if radius == 1 {
+            if !_erase {
+                self.set_pixel(row, column, material.clone());
+            }
+            else {
+                self.erase_pixel(row, column);
+            }
+        return;
         }
 
         for r in 0..radius {
