@@ -10,7 +10,7 @@ fn window_conf() -> macroquad::prelude::Conf {
     macroquad::prelude::Conf {
         window_title: "Sandbox".to_owned(),
         high_dpi: false,
-        window_resizable: false,
+        window_resizable: true,
         platform: macroquad::miniquad::conf::Platform {
             // swap_interval: Some(0),
             ..Default::default()
@@ -19,7 +19,7 @@ fn window_conf() -> macroquad::prelude::Conf {
     }
 }
 
-const TICK_RATE: f32 = 60.0;
+const TICK_RATE: f32 = 120.0;
 const TICK_DURATION: f32 = 1.0 / TICK_RATE;
 
 #[macroquad::main(window_conf)]
