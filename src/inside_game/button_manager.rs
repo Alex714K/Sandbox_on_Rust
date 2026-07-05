@@ -5,10 +5,11 @@ use strum::IntoEnumIterator;
 
 use crate::{ables::drawable::Drawable, inside_game::{brush::Brush, pixel::{MaterialType, Pixel}}};
 
-const DISTANCE_BETWEEN_BUTTONS_OF_ELEMENTS: f32 = 10.0;
+pub const UNDER_GAP: f32 = 10.0;
+pub const DISTANCE_BETWEEN_BUTTONS_OF_ELEMENTS: f32 = 10.0;
 
-const BUTTON_WIDTH: f32 = 100.0;
-const BUTTON_HEIGHT: f32 = 30.0;
+pub const BUTTON_WIDTH: f32 = 100.0;
+pub const BUTTON_HEIGHT: f32 = 30.0;
 
 pub struct ButtonManager {
     brush: Rc<RefCell<Brush>>
