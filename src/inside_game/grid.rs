@@ -126,7 +126,11 @@ impl Grid {
         }
         let row = row as usize;
         
-        let radius = self.brush.borrow().radius as usize;
+        let radius: usize;
+        {
+            let brush = self.brush.borrow();
+            radius = (brush.radius * brush.brush_multiply) as usize;
+        }
 
         if radius == 1 {
             if !_erase {
@@ -138,7 +142,7 @@ impl Grid {
             return;
         }
 
-        for r in 0..radius {
+        for r in 0..(radius) {
             let width = radius - r - 1;
             let left = if column > width { column - width } else { 0 };
             let right = if column + width < WIDTH { column + width } else { WIDTH - 1 };

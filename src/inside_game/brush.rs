@@ -1,10 +1,13 @@
-use macroquad::input::{KeyCode, MouseButton, is_key_down, is_mouse_button_down, mouse_position};
+use macroquad::input::{KeyCode, MouseButton, is_key_down, is_key_pressed, is_key_released, is_mouse_button_down, mouse_position};
 use macroquad::math::{Vec4, vec4};
 
 use crate::ables::updatable::Updatable;
 use crate::inside_game::pixel::MaterialType;
 use strum::IntoEnumIterator;
 use crate::inside_game::button_manager::{BUTTON_HEIGHT, BUTTON_WIDTH, UNDER_GAP, DISTANCE_BETWEEN_BUTTONS_OF_ELEMENTS};
+
+const BRUSH_BASE: u8 = 1;
+const BRUSH_MULTIPLIER: u8 = 2;
 
 pub struct Brush {
     pub material: MaterialType,
@@ -13,12 +16,21 @@ pub struct Brush {
     pub need_erase: bool,
     pub x: isize,
     pub y: isize,
+    pub brush_multiply: u8,
     buttons_coords: Vec<Vec4>
 }
 
 impl Brush {
     pub fn new(material: MaterialType, radius: u8) -> Brush {
-        Brush { material, radius, need_update: false, need_erase: false, x: 0, y: 0, buttons_coords: Brush::calculate_buttons_coords() }
+        Brush { 
+            material, 
+            radius, 
+            need_update: false, 
+            need_erase: false, 
+            x: 0, 
+            y: 0, 
+            brush_multiply: BRUSH_BASE, 
+            buttons_coords: Brush::calculate_buttons_coords() }
     }
 
     fn calculate_buttons_coords() -> Vec<Vec4> {
@@ -82,6 +94,15 @@ impl Updatable for Brush {
     fn update(&mut self) {
         self.mouse_update();
 
+        println!("{}", self.brush_multiply);
+
+        if is_key_pressed(KeyCode::LeftShift) {
+            self.brush_multiply = BRUSH_MULTIPLIER;
+        }
+        else if is_key_released(KeyCode::LeftShift) {
+            self.brush_multiply = BRUSH_BASE;
+        }
+
         if is_key_down(KeyCode::Key1) {
             self.radius = 1;
         }
@@ -92,7 +113,7 @@ impl Updatable for Brush {
             self.radius = 3;
         }
         else if is_key_down(KeyCode::Key4) {
-            self.radius = 75
+            self.radius = 75;
         }
     }
 }
