@@ -1,7 +1,10 @@
 use std::cell::RefCell;
 use std::rc::Rc;
 
-use crate::ables;
+use macroquad::color::WHITE;
+use macroquad::text::draw_text;
+
+use crate::{SCREEN_WIDTH, ables};
 use crate::inside_game::button_manager::ButtonManager;
 use crate::inside_game::pixel::MaterialType;
 use crate::inside_game::{grid, brush::Brush};
@@ -21,6 +24,14 @@ impl Game {
             brush,
         }
     }
+
+    fn draw_description(&self) {
+        let text_start = SCREEN_WIDTH - 240.0;
+        draw_text("1-4 - brush sizes", text_start, 24.0 * 1.0, 24.0, WHITE);
+        draw_text("Shift - brush size * 2", text_start, 24.0 * 2.0, 24.0, WHITE);
+        draw_text("LMB - place material", text_start, 24.0 * 3.0, 24.0, WHITE);
+        draw_text("RMB - clear", text_start, 24.0 * 4.0, 24.0, WHITE);
+    }
 }
 
 impl ables::updatable::Updatable for Game {
@@ -34,5 +45,6 @@ impl ables::drawable::Drawable for Game {
     fn draw(&self) {
         self.button_manager.draw();
         self.grid.draw();
+        self.draw_description();
     }
 }
