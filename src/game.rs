@@ -3,8 +3,9 @@ use std::rc::Rc;
 
 use macroquad::color::WHITE;
 use macroquad::text::draw_text;
+use macroquad::window::screen_width;
 
-use crate::{SCREEN_WIDTH, ables};
+use crate::ables;
 use crate::inside_game::button_manager::ButtonManager;
 use crate::inside_game::pixel::MaterialType;
 use crate::inside_game::{grid, brush::Brush};
@@ -26,7 +27,7 @@ impl Game {
     }
 
     fn draw_description(&self) {
-        let text_start = SCREEN_WIDTH - 240.0;
+        let text_start = screen_width() - 240.0;
         draw_text("1-4 - brush sizes", text_start, 24.0 * 1.0, 24.0, WHITE);
         draw_text("Shift - brush size * 2", text_start, 24.0 * 2.0, 24.0, WHITE);
         draw_text("LMB - place material", text_start, 24.0 * 3.0, 24.0, WHITE);
